@@ -17,28 +17,12 @@
       "available": true
     },
     {
-      "id": 3,
-      "name": "Iphone",
-      "price": 1400,
-      "quantity": 80,
-      "selected": false,
-      "available": true
-    },
-    {
-      "id": 4,
-      "name": "fggf",
-      "price": "155",
-      "quantity": "3333",
-      "selected": true,
-      "available": true
-    },
-    {
-      "name": "bbhb",
+      "id": 5,
+      "name": "Laptop HP",
       "price": "12",
       "quantity": "02",
       "selected": true,
-      "available": true,
-      "id": 5
+      "available": true
     }
   ]
 }

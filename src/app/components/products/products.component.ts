@@ -1,4 +1,4 @@
-import { DataStateEnum } from './../../state/product.state';
+import { DataStateEnum, ProductActionsTypes, ActionEvent } from './../../state/product.state';
 import { catchError, map, Observable, of, startWith } from 'rxjs';
 import { ProductsService } from './../../services/products.service';
 import { Component, OnInit } from '@angular/core';
@@ -73,5 +73,33 @@ export class ProductsComponent implements OnInit {
   }
   onEditProduct(p:Product){
     this.router.navigateByUrl("/updateProduct/"+p.id)
+  }
+  onActionEvent($event:ActionEvent){
+        switch($event.type){
+          case ProductActionsTypes.GET_ALL_PRODUCTS:
+              this.onGetAllProducts();
+              break;
+          case ProductActionsTypes.GET_AVAILABLE_PRODUCTS:
+              this.onGetAvailableProducts();
+              break;
+          case ProductActionsTypes.GET_SELECTED_PRODUCTS:
+              this.onGetSelectedProducts();
+              break;
+          case ProductActionsTypes.NEW_PRODUCT:
+              this.onAddProduct();
+              break;
+          case ProductActionsTypes.SEARCH_PRODUCTS:
+              this.onSearch($event.payload);
+              break;
+          case ProductActionsTypes.SELECT_PRODUCT:
+              this.onSelect($event.payload);
+              break;
+          case ProductActionsTypes.EDIT_PRODUCT:
+              this.onEditProduct($event.payload);
+              break;
+          case ProductActionsTypes.DELETE_PRODUCT:
+              this.onDelete($event.payload);
+              break;
+        }
   }
 }
