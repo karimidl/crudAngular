@@ -28,9 +28,9 @@ export class ProductsListComponent implements OnInit {
     this.productEventEmitter.emit({type:ProductActionsTypes.DELETE_PRODUCT,payload:p})
   }
 
-  onActionEvent($event:ActionEvent){
+  // onActionEvent($event:ActionEvent){
 
-    this.productEventEmitter.emit($event)
+  //   this.productEventEmitter.emit($event)
 
-   }
+  //  }
 }

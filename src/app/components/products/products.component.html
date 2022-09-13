@@ -1,9 +1,10 @@
 <div class="container mt-5">
-<app-products-nav-bar (productEventEmitter)="onActionEvent($event)"></app-products-nav-bar>
+<!-- <app-products-nav-bar (productEventEmitter)="onActionEvent($event)"></app-products-nav-bar>
 
-<app-products-list [productsDataInput$]="productsData$" (productEventEmitter)="onActionEvent($event)" ></app-products-list>
-
-
+<app-products-list [productsDataInput$]="productsData$" (productEventEmitter)="onActionEvent($event)" ></app-products-list> -->
+<app-products-nav-bar ></app-products-nav-bar>
+<app-products-list [productsDataInput$]="productsData$" ></app-products-list>
   <!--  -->
+
 </div>
 

@@ -12,7 +12,7 @@
       "id": 2,
       "name": "LG",
       "price": 1300,
-      "quantity": 20,
+      "quantity": "200",
       "selected": false,
       "available": true
     },
