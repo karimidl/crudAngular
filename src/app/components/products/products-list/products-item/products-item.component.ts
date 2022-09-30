@@ -1,8 +1,8 @@
-import { EventDriverService } from './../../../../state/event.driver.service';
-import { ProductActionsTypes } from 'src/app/state/product.state';
-import { ActionEvent } from '../../../../state/product.state';
-import { Product } from '../../../../model/product.model';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Product } from './../../../../model/product.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { DeleteProductsAction, SelectProductsAction } from 'src/app/ngrx/products.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-item',
@@ -11,24 +11,21 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ProductsItemComponent implements OnInit {
 
-  @Input() product?:Product;
-  // @Output() productEventEmitter:EventEmitter<ActionEvent>=new EventEmitter();
-
-  constructor(private eventDriverService:EventDriverService) { }
+  // @Input() product!:Product;
+  constructor(private store:Store,private router:Router) { }
 
   ngOnInit(): void {
   }
+  onSelect(product:Product){
+    this.store.dispatch(new SelectProductsAction(product))
+  }
+  onDelete(product:Product){
+    let v=confirm("Are you sur to delete this Item!?");
+    if(v)
+    this.store.dispatch(new DeleteProductsAction(product))
+      }
 
-  onSelect(p:Product){
-    // this.productEventEmitter.emit({type:ProductActionsTypes.SELECT_PRODUCT,payload:p})
-    this.eventDriverService.publishEvent({type:ProductActionsTypes.SELECT_PRODUCT,payload:p})
-}
-onEditProduct(p:Product){
-  // this.productEventEmitter.emit({type:ProductActionsTypes.EDIT_PRODUCT,payload:p})
-  this.eventDriverService.publishEvent({type:ProductActionsTypes.EDIT_PRODUCT,payload:p})
-}
-onDelete(p:Product){
-  // this.productEventEmitter.emit({type:ProductActionsTypes.DELETE_PRODUCT,payload:p})
-  this.eventDriverService.publishEvent({type:ProductActionsTypes.DELETE_PRODUCT,payload:p})
-}
+  onEdit(product:Product){
+     this.router.navigateByUrl("/updateProduct/"+product.id)
+  }
 }

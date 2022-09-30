@@ -1,10 +1,20 @@
 <div class="container mt-5">
-<!-- <app-products-nav-bar (productEventEmitter)="onActionEvent($event)"></app-products-nav-bar>
+  <app-products-nav-bar></app-products-nav-bar>
+  <ng-container *ngIf="(productsState$ |async) as state" [ngSwitch]="state.dataState">
+    <ng-container *ngSwitchCase="productsStateEnum.INITIAL">Initial...</ng-container>
+    <ng-container *ngSwitchCase="productsStateEnum.LOADING">Loading...</ng-container>
 
-<app-products-list [productsDataInput$]="productsData$" (productEventEmitter)="onActionEvent($event)" ></app-products-list> -->
-<app-products-nav-bar ></app-products-nav-bar>
-<app-products-list [productsDataInput$]="productsData$" ></app-products-list>
-  <!--  -->
+    <ng-container *ngSwitchCase="productsStateEnum.ERROR">
+      <div class="col-12 text-center">
+        <div class="alert alert-danger">{{state.errorMessage}}</div>
 
+      </div>
+
+    </ng-container>
+    <ng-container *ngSwitchCase="productsStateEnum.LOADED">
+
+      <app-products-list [state]="state"></app-products-list>
+    </ng-container>
+</ng-container>
 </div>
 

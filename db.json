@@ -3,26 +3,26 @@
     {
       "id": 1,
       "name": "Nokia",
-      "price": 1200,
+      "price": "1900",
       "quantity": 50,
       "selected": true,
       "available": false
     },
     {
       "id": 2,
-      "name": "LG",
-      "price": 1300,
-      "quantity": "200",
+      "name": "cccccccccc",
+      "price": 0,
+      "quantity": 0,
       "selected": false,
       "available": true
     },
     {
-      "id": 5,
-      "name": "Laptop HP",
-      "price": "12",
-      "quantity": "02",
+      "name": "ffff",
+      "price": "15",
+      "quantity": "20",
       "selected": true,
-      "available": true
+      "available": true,
+      "id": 3
     }
   ]
 }

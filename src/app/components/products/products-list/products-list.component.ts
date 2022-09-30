@@ -1,7 +1,6 @@
-import { AppDataState, DataStateEnum, ActionEvent, ProductActionsTypes } from './../../../state/product.state';
-import { Observable } from 'rxjs';
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
-import { Product } from 'src/app/model/product.model';
+import { Product } from './../../../model/product.model';
+import { ProductsState } from 'src/app/ngrx/products.reducer';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-products-list',
@@ -10,27 +9,10 @@ import { Product } from 'src/app/model/product.model';
 })
 export class ProductsListComponent implements OnInit {
 
-
-  @Input() public productsDataInput$?:Observable<AppDataState<Product[]>>;
-  @Output() productEventEmitter:EventEmitter<ActionEvent>=new EventEmitter();
-  readonly dataStateEnum=DataStateEnum;
+  @Input() state!:ProductsState
   constructor() { }
 
   ngOnInit(): void {
   }
-  onSelect(p:Product){
-      this.productEventEmitter.emit({type:ProductActionsTypes.SELECT_PRODUCT,payload:p})
-  }
-  onEditProduct(p:Product){
-    this.productEventEmitter.emit({type:ProductActionsTypes.EDIT_PRODUCT,payload:p})
-  }
-  onDelete(p:Product){
-    this.productEventEmitter.emit({type:ProductActionsTypes.DELETE_PRODUCT,payload:p})
-  }
 
-  // onActionEvent($event:ActionEvent){
-
-  //   this.productEventEmitter.emit($event)
-
-  //  }
 }

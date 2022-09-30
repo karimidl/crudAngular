@@ -1,39 +1,19 @@
-<ng-container *ngIf="(productsDataInput$ |async) as result" [ngSwitch]="result.dataState">
+<table class="table" *ngIf="state">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Selected</th>
+      <th scope="col">Available</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
 
-  <ng-container *ngSwitchCase="dataStateEnum.LOADING">Loading...</ng-container>
 
-  <ng-container *ngSwitchCase="dataStateEnum.ERROR">
-    <div class="col-12 text-center">
-      <div class="alert alert-danger">{{result.errorMessage}}</div>
-
-    </div>
-
-  </ng-container>
-
-
-  <ng-container *ngSwitchCase="dataStateEnum.LOADED">
-
-    <table class="table">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Name</th>
-          <th scope="col">Price</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Selected</th>
-          <th scope="col">Available</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-<!-- <app-products-item [product]="p" style="display:contents ;" (productEventEmitter)="onActionEvent($event)" *ngFor="let p of result.data"> -->
-<app-products-item [product]="p" style="display:contents ;"  *ngFor="let p of result.data">
-
-  </app-products-item>
+<app-products-item *ngFor="let product of state.products" [product]="product" style="display:contents ;"></app-products-item>
 
 
 
-      </tbody>
-    </table>
-  </ng-container>
-</ng-container>
+</table>

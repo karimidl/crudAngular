@@ -21,7 +21,7 @@
     </ul>
     <ul>
       <li>
-        <form (ngSubmit)="onSearch(form.value)" #form="ngForm" style="position:relative ;">
+        <form   style="position:relative ;" #f="ngForm" (ngSubmit)="onSearch(f.value)">
 
           <input type="search" ngModel name="keyword" class="form-control" placeholder="search..."/>
           <button type="submit" class="btn btn-primary" style="    position: absolute;

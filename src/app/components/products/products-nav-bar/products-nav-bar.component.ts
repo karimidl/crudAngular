@@ -1,7 +1,8 @@
-import { EventDriverService } from './../../../state/event.driver.service';
-import { ActionEvent } from './../../../state/product.state';
+import { Router } from '@angular/router';
+import { GetSelectedProductsAction, GetAvailableProductsAction, SearchProductsAction } from './../../../ngrx/products.actions';
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
-import { ProductActionsTypes } from 'src/app/state/product.state';
+import { Store } from '@ngrx/store';
+import { GetAllProductsAction } from 'src/app/ngrx/products.actions';
 
 @Component({
   selector: 'app-products-nav-bar',
@@ -10,34 +11,30 @@ import { ProductActionsTypes } from 'src/app/state/product.state';
 })
 export class ProductsNavBarComponent implements OnInit {
 
-  // @Output() productEventEmitter:EventEmitter<ActionEvent>=new EventEmitter();
 
-  constructor(private eventDriverService:EventDriverService) { }
+
+  constructor(private store:Store<any>,private router:Router) { }
 
   ngOnInit(): void {
   }
   onGetAllProducts(){
-      // this.productEventEmitter.emit({type:ProductActionsTypes.GET_ALL_PRODUCTS});
-      this.eventDriverService.publishEvent({type:ProductActionsTypes.GET_ALL_PRODUCTS})
+
+    this.store.dispatch(new GetAllProductsAction({}))
 
   }
   onGetSelectedProducts(){
-    // this.productEventEmitter.emit({type:ProductActionsTypes.GET_SELECTED_PRODUCTS});
-    this.eventDriverService.publishEvent({type:ProductActionsTypes.GET_SELECTED_PRODUCTS})
 
+    this.store.dispatch(new GetSelectedProductsAction({}))
   }
   onGetAvailableProducts(){
-    // this.productEventEmitter.emit({type:ProductActionsTypes.GET_AVAILABLE_PRODUCTS});
-    this.eventDriverService.publishEvent({type:ProductActionsTypes.GET_AVAILABLE_PRODUCTS})
+
+    this.store.dispatch(new GetAvailableProductsAction({}))
 
   }
   onAddProduct(){
-    // this.productEventEmitter.emit({type:ProductActionsTypes.NEW_PRODUCT});
-    this.eventDriverService.publishEvent({type:ProductActionsTypes.NEW_PRODUCT})
-
+   this.router.navigateByUrl('/newProduct')
   }
-  onSearch(key:any){
-    // this.productEventEmitter.emit({type:ProductActionsTypes.SEARCH_PRODUCTS,payload:key});
-     this.eventDriverService.publishEvent({type:ProductActionsTypes.SEARCH_PRODUCTS,payload:key})
+  onSearch(dataForm:any ){
+    this.store.dispatch(new SearchProductsAction(dataForm.keyword))
   }
 }

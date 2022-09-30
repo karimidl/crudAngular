@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
 import { AddProductComponent } from './components/add-product/add-product.component';
-import { EditProductComponent } from './components/edit-product/edit-product.component';
+
 import { HomeComponent } from './components/home/home.component';
+import { EditProductComponent } from './components/products/edit-product/edit-product.component';
+import { NewProductComponent } from './components/products/new-product/new-product.component';
 import { ProductsComponent } from './components/products/products.component';
 
 const routes: Routes = [
@@ -14,7 +16,7 @@ const routes: Routes = [
     path:"",component:HomeComponent
   },
   {
-    path:"newProduct",component:AddProductComponent
+    path:"newProduct",component:NewProductComponent
   },
   {
     path:"updateProduct/:id",component:EditProductComponent
